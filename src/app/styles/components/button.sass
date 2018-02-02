@@ -1,0 +1,23 @@
+%button
+    padding: 10px 15px
+    background: $white
+    color: $dark-grey
+    border-radius: 20px
+    border: none
+
+.button
+    @extend %button
+
+.button-primary
+    @extend %button
+    background: $primary
+    color: $white
+
+.button-clear
+    @extend %button
+    background: transparent
+    color: $white
+    border: solid 1px $white
+    &:hover
+        background: $white
+        color: $dark-grey

@@ -1,0 +1,24 @@
+.odnHome-component
+    header
+        display: flex
+        flex-flow: row wrap
+        min-height: 100vh
+        background: linear-gradient(135deg, $cyan, $primary), url('../assets/landing-bg.jpg')
+        background-blend-mode: screen
+        background-size: cover
+        color: $white
+
+    section
+        background: transparentize($black, 0.2)
+        mix-blend-mode: soft-light
+        position: relative
+        padding: 20px
+        width: 50%
+        display: flex
+        flex-flow: column wrap
+        justify-content: center
+        align-items: center
+        z-index: 1
+
+        .header-content
+            width: 50%
