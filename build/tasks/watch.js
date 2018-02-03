@@ -15,7 +15,7 @@ gulp.task('webapp-watch', () => {
 
 gulp.task('watch', () =>{
     livereload.listen();
-    gulp.watch(path.join(cfg.paths.webapp.base.src, '/**/*.html'), ['webapp-html', 'webapp-js']);
+    gulp.watch(path.join(cfg.paths.webapp.base.src, '/**/*.html'), () => runSequence('webapp-html', 'webapp-js'));
     gulp.watch(path.join(cfg.paths.webapp.base.src, '/**/*.sass'), ['webapp-sass']);
     gulp.watch(path.join(cfg.paths.webapp.base.src, '/**/*.js'), ['webapp-js']);
 })

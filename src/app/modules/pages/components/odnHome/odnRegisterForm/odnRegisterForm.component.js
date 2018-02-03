@@ -1,12 +1,58 @@
 'use strict';
 angular.module('pages')
 .component('odnRegisterForm', {
+    bindings: {
+        onFocus: "&",
+        onBlur: "&"
+    },
     templateUrl : 'odnRegisterForm.component.html',
-    controller : odnLoginFormController,
+    controller : odnRegisterFormController,
 })
-function odnLoginFormController(){
+function odnRegisterFormController(){
     let $ctrl = this;
-    $ctrl.$onInit = function(){
-        
-    };
+
+    $ctrl.emailRegex = new RegExp(/^[_a-z0-9]+(\.[_a-z0-9]+)*@@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/);
 };
+
+angular.module('pages')
+.directive('passwordMatch', () => {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, ngModel) {
+            ngModel.$parsers.push(function(value) {
+                let matchElement = attrs.passwordMatch;
+
+                if (!value || value.length == 0) return;
+                ngModel.$setValidity('match', value === matchElement);
+                return value;
+            })
+        }
+    }
+});
+
+angular.module('pages')
+.directive('isAvailable', ($http) => {
+    return {
+        require: 'ngModel',
+        link: (scope, element, attrs, ngModel) => {
+            let apiUrl = attrs.isAvailable;
+
+            function setAsAvailable(bool) {
+                ngModel.$setValidity('available', bool);
+            }
+
+            ngModel.$parsers.push( (value) => {
+                if (!value || value.length == 0) return;
+
+                $http.post(apiUrl, {value: value})
+                .then((response) =>{
+                    setAsAvailable(response.data.available);
+                })
+                .catch((err) => {
+                    setAsAvailable(false);
+                });
+                return value;
+            })
+        }
+    }
+});

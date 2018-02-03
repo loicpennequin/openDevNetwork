@@ -10,14 +10,30 @@ $cyan: hsl(180,80%,60%)
 
 $light-blue : hsl(210, 80%, 80%)
 $medium-blue : hsl(210, 70%, 50%)
-$dark-blue : hsl(210, 70%, 30%)
+$dark-blue : hsl(210, 70%, 20%)
+
+$light-red : hsl(0, 80%, 60%)
+$medium-red : hsl(0, 70%, 45%)
+$dark-red : hsl(0, 70%, 25%)
+
+$light-green : hsl(100, 80%, 70%)
+$medium-green : hsl(100, 70%, 45%)
+$dark-green : hsl(100, 70%, 20%)
 
 $primary : $medium-blue
+$success : $medium-green
+$danger : $medium-red
 
 //typography
 
+$font-primary: 'Open Sans', 'Helvetica', 'Arial', sans-serif
+$font-secondary: 'Righteous', 'Helvetica', 'Arial', sans-serif
 //===========MIXINS==============//
 
 =mobile
     @media screen and (max-width: 768px)
+        @content
+
+=desktop-only
+    @media screen and (min-width: 1024px)
         @content

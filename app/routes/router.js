@@ -22,11 +22,18 @@ module.exports = function(app){
     router.get('/loggedin', passport.authenticate('jwt', {session:false}, (error, user, info, status) => {
         console.log(info);
     }));
+    router.post('/useravailable', ctrl(userCtrl.existByUsername, (req,res,next) => [req.body.value]));
+    router.post('/emailavailable', ctrl(userCtrl.existByEmail, (req,res,next) => [req.body.value]));
 
     // private routes
     privateRouter.get('/users/:id', ctrl(userCtrl.getUserById, (req, res, next) => [req.params.id]));
     privateRouter.get('/users', ctrl(userCtrl.getUsers));
 
-    app.use('/api', router);
-    app.use('/api', passport.authenticate('jwt', {session:false}), privateRouter);
+    app.use('/api', logRequest, router);
+    // app.use('/api', logRequest, passport.authenticate('jwt', {session:false}), privateRouter);
 };
+
+function logRequest(req, res, next) {
+    logger.info('RESTAPI call : ' + req.url);
+    next();
+}

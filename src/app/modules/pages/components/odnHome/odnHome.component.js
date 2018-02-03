@@ -7,6 +7,12 @@ angular.module('pages')
 function odnHomeController(){
     let $ctrl = this;
     $ctrl.$onInit = function(){
-        $ctrl.name = "odnHome";
+        $ctrl.backgroundBlur = false;
     };
+
+    $ctrl.blur = () =>{
+        $ctrl.backgroundBlur = true;
+        console.log($ctrl.backgroundBlur);
+    };
+
 };

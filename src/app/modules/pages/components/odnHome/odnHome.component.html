@@ -1,17 +1,25 @@
 <div class="odnHome-component">
     <header>
-        <section>
+        <section class="left-side" ng-mouseover="$ctrl.backgroundBlur = false" ng-class="{'blur' : $ctrl.backgroundBlur}">
+
             <div class="header-content">
                 <h1>Open Dev Network</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
             </div>
+
         </section>
-        <section>
+
+        <section class="right-side" ng-class="{'blur' : !$ctrl.backgroundBlur}"
+                 ng-mouseover="$ctrl.backgroundBlur = true">
+
             <div class="header-content">
-                <odn-register-form></odn-register-form>
+                <odn-register-form on-focus="$ctrl.backgroundBlur = true"
+                                   on-blur="$ctrl.backgroundBlur = false"></odn-register-form>
+
                 <span>Déjà inscrit ?</span>
                 <button class="button-clear">Connectez-vous</button>
             </div>
+
         </section>
     </header>
 </div>
