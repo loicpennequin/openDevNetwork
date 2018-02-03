@@ -3,7 +3,8 @@ angular.module('pages')
 .component('odnRegisterForm', {
     bindings: {
         onFocus: "&",
-        onBlur: "&"
+        onBlur: "&",
+        onSubmit: "&"
     },
     templateUrl : 'odnRegisterForm.component.html',
     controller : odnRegisterFormController,

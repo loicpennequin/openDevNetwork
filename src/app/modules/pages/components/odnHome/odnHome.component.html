@@ -1,6 +1,6 @@
 <div class="odnHome-component">
     <header>
-        <section class="left-side" ng-mouseover="$ctrl.backgroundBlur = false" ng-class="{'blur' : $ctrl.backgroundBlur}">
+        <section class="left-side" ng-class="{'blur' : $ctrl.backgroundBlur}">
 
             <div class="header-content">
                 <h1>Open Dev Network</h1>
@@ -10,14 +10,23 @@
         </section>
 
         <section class="right-side" ng-class="{'blur' : !$ctrl.backgroundBlur}"
-                 ng-mouseover="$ctrl.backgroundBlur = true">
+                 ng-click="$ctrl.backgroundBlur = true">
 
             <div class="header-content">
-                <odn-register-form on-focus="$ctrl.backgroundBlur = true"
-                                   on-blur="$ctrl.backgroundBlur = false"></odn-register-form>
+                <div ng-if="!$ctrl.registrationSuccessful">
+                    <odn-register-form on-focus="$ctrl.backgroundBlur = true"
+                                   on-blur="$ctrl.backgroundBlur = false"
+                                   on-submit="$ctrl.register(data)"></odn-register-form>
 
-                <span>Déjà inscrit ?</span>
-                <button class="button-clear">Connectez-vous</button>
+                    <div class="reg-error" ng-if="$ctrl.registrationError">Un erreur est survenue lors de votre inscription. Veuillez vérifier que vos informations soient valides et reessayer.</div>
+                    <span>Déjà inscrit ?</span>
+                    <button class="button-clear">Connectez-vous</button>
+                </div>
+                <div ng-if="$ctrl.registrationSuccessful">
+                    <h2>Votre inscription a bien été effectuée. Vous pouvez dès maintenant vous connecter à OpenDevNetwork !</h2>
+                    <br/>
+                    <button class="button-clear">Je me connecte</button>
+                </div>
             </div>
 
         </section>

@@ -1,6 +1,6 @@
 <div class="odnRegisterForm-component">
     <h2>Rejoignez nous dès maintenant</h2>
-    <form name="registerForm" novalidate>
+    <form name="registerForm"  ng-submit="$ctrl.onSubmit({data : $ctrl.newUser})" novalidate>
         <div class="form-field">
             <label>Pseudo <i class="fas fa-check" ng-if="registerForm.username.$valid"></i></label>
             <input class="large" name="username" type="text" ng-focus="$ctrl.onFocus()"
@@ -56,7 +56,7 @@
                 </ng-message>
             </ng-messages>
         </div>
-        
+
         <div class="form-field">
             <label>Email <i class="fas fa-check" ng-if="registerForm.email.$valid"></i></label>
             <input class="large" name="email" type="email" ng-focus="$ctrl.onFocus()"
