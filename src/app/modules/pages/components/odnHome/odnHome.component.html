@@ -20,12 +20,12 @@
 
                     <div class="reg-error" ng-if="$ctrl.registrationError">Un erreur est survenue lors de votre inscription. Veuillez vérifier que vos informations soient valides et reessayer.</div>
                     <span>Déjà inscrit ?</span>
-                    <button class="button-clear">Connectez-vous</button>
+                    <a ui-sref="login"><button class="button-clear">Connectez-vous</button></a>
                 </div>
                 <div ng-if="$ctrl.registrationSuccessful">
-                    <h2>Votre inscription a bien été effectuée. Vous pouvez dès maintenant vous connecter à OpenDevNetwork !</h2>
+                    <h2>Votre inscription a bien été effectuée. Vous pouvez dès maintenant vous connecter à OpenDevNetwork.</h2>
                     <br/>
-                    <button class="button-clear">Je me connecte</button>
+                    <a ui-sref="login"><button class="button-clear">Je me connecte!</button></a>
                 </div>
             </div>
 
