@@ -29,9 +29,7 @@ angular.module('pages')
             })
         }
     }
-});
-
-angular.module('pages')
+})
 .directive('isAvailable', ($http) => {
     return {
         require: 'ngModel',
@@ -42,7 +40,7 @@ angular.module('pages')
                 ngModel.$setValidity('available', bool);
             }
 
-            ngModel.$parsers.push( (value) => {
+            let checkAvailable = (value) => {
                 if (!value || value.length == 0) return;
 
                 $http.post(apiUrl, {value: value})
@@ -53,7 +51,10 @@ angular.module('pages')
                     setAsAvailable(false);
                 });
                 return value;
-            })
+            }
+            let debounceCheckAvailable = _.debounce(checkAvailable, 1000)
+
+            ngModel.$parsers.push(debounceCheckAvailable)
         }
     }
 });

@@ -4,6 +4,10 @@ require('babel-polyfill');
 //libs
 var jquery = require('jquery');
 global.$ = global.jQuery = jquery;
+require('underscore');
+var _ = require('underscore');
+global._ = _;
+
 require('angular');
 require('angular-messages');
 require('angular-resource');
