@@ -4,7 +4,8 @@ const passport    = require('passport'),
       jwt         = require('jsonwebtoken'),
       bcrypt      = require('bcrypt'),
       db          = require(path.join(__dirname, '../../config/database.js')),
-      userModel   = require(path.join(__dirname, '../models/userModel.js'))
+      userModel   = require(path.join(__dirname, '../models/userModel.js')),
+      mailer      = require('nodemailer')
 
 module.exports.login = async (req, res) => {
     const identifier = req.body.identifier,
@@ -34,3 +35,34 @@ module.exports.login = async (req, res) => {
         });
     });
 }
+
+module.exports.isLoggedIn = async(req,res,next) =>{
+    passport.authenticate('jwt', {session:false}, (err, user, info) => {
+        user ? res.send(true) : res.send(false); //req.isAuthenticated() always returns false...
+    })(req,res,next)
+};
+
+module.exports.sendPwRecoverMail = async(req, res, next) =>{
+    var transporter = mailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'imdariagotohell@gmail.com',
+            pass: 'shoe0nhead'
+        }
+    });
+
+    let mailOptions = {
+        from: '<imdariagotohell@gmail.com>', // sender address
+        to: 'lo.pennequin@gmail.com', // list of receivers
+        subject: 'test nodemailer', // Subject line
+        text: 'Hello world?', // plain text body
+        html: '<b>Hello world?</b>' // html body
+    };
+
+    transporter.sendMail(mailOptions, function (err, info) {
+        if(err)
+            console.log(err);
+        else
+            console.log(info);
+    });
+};
