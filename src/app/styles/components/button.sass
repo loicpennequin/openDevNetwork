@@ -4,6 +4,7 @@
     color: $dark-grey
     border-radius: 20px
     border: none
+    transition: all 0.2s
 
 .button
     @extend %button
@@ -12,12 +13,31 @@
     @extend %button
     background: $primary
     color: $white
+    &:hover
+        background: darken($primary, 10%)
+
+.button-danger
+    @extend %button
+    background: $danger
+    color: $white
+    &:hover
+        background: darken($danger, 10%)
 
 .button-clear
     @extend %button
     background: transparent
-    color: $white
+    color: inherit
     border: solid 1px $white
     &:hover
         background: $white
         color: $dark-grey
+
+.button-large
+    @extend %button
+    width: 100%
+    text-align: center
+    font-size: 1.1em
+
+.button-3d
+    %extend button
+    +box-shadow($dark-grey)

@@ -19,5 +19,5 @@ module.exports = ()=>{
 
 let authenticate = async (jwt_payload, done) => {
     let result = await userModel.getById(jwt_payload.data.id);
-    return result.length > 0 ? done(null, result[0]) : done(new Error('not authenticated'), false);
+    return result.length > 0 ? done(null, result[0]) : done(null, false);
 };

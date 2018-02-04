@@ -4,35 +4,36 @@ angular.module('app')
     $stateProvider
     .state('home', {
         url: "/",
-        component: "odnHome",
-        resolve : {
-            // isLoggedin : (AuthService, $state) => AuthService.isLoggedin()
-            //     .then( response => response.data == true ? $state.go('home') : response.data )
-        }
+        component: "odnHome"
     })
     .state('login', {
         url: "/login",
         component: "odnLogin",
         resolve : {
-            // isLoggedin : (AuthService, $state) => AuthService.isLoggedin()
-            //     .then( response => response.data == true ? $state.go('home') : response.data )
+            // isLoggedin : (AuthService, localStorage, $state) => AuthService.isLoggedIn()
+            //     .then( response =>{
+            //         console.log(response);
+            //         localStorage.set('authToken', response.data.token);
+            //         $state.go('account.dashboard')
+            //     })
         }
     })
     .state('account', {
         abstract: true,
-        component: "odnHome",
+        template: "<odn-main-navbar></odn-main-navbar><ui-view></ui-view>",
         resolve : {
-            isLoggedin : (AuthService, $state) => AuthService.isLoggedin()
-                .then( response => response.data == true ? $state.go('home') : response.data )
+            isLoggedin : (AuthService, localStorage, $state) => AuthService.isLoggedIn()
+                .then( response =>{
+                    localStorage.set('authToken', response.data.token);
+                })
+                .catch( (err) =>{
+                    $state.go('login')
+                })
         }
     })
-    .state('account.dashBoard', {
+    .state('account.dashboard', {
         url: "/dashboard",
-        component: "odnDashboard",
-        resolve : {
-            // isLoggedin : (AuthService, $state) => AuthService.isLoggedin()
-            //     .then( response => response.data == true ? $state.go('home') : response.data )
-        }
+        component: "odnDashboard"
     })
 
 })

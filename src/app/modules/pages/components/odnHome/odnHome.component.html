@@ -5,6 +5,8 @@
             <div class="header-content">
                 <h1>Open Dev Network</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <br/>
+                <a ui-sref="login"><button class="button-primary">Connexion</button></a>
             </div>
 
         </section>
@@ -19,13 +21,15 @@
                                    on-submit="$ctrl.register(data)"></odn-register-form>
 
                     <div class="reg-error" ng-if="$ctrl.registrationError">Un erreur est survenue lors de votre inscription. Veuillez vérifier que vos informations soient valides et reessayer.</div>
-                    <span>Déjà inscrit ?</span>
-                    <a ui-sref="login"><button class="button-clear">Connectez-vous</button></a>
+                    Déjà inscrit ?
+                    <a ui-sref="login">
+                        <button class="button-clear" ng-click="$state.go('login')">Connectez vous</button>
+                    </a>
                 </div>
                 <div ng-if="$ctrl.registrationSuccessful">
                     <h2>Votre inscription a bien été effectuée. Vous pouvez dès maintenant vous connecter à OpenDevNetwork.</h2>
                     <br/>
-                    <a ui-sref="login"><button class="button-clear">Je me connecte!</button></a>
+                    <a ui-sref="login"><button class="button-clear">Je me connecte !</button></a>
                 </div>
             </div>
 

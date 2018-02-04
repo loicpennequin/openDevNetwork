@@ -1,4 +1,8 @@
 <div class="odnLogin-component">
-    <h1>Connecters vous à Open Dev Network dès maintenant.</h1>
-    <odn-login-form></odn-login-form>
+    <h1>Connectez vous à Open Dev Network dès maintenant.</h1>
+    <odn-login-form on-submit="$ctrl.login(credentials)"></odn-login-form>
+    <div>
+        Error message placeholder
+    </div>
+    <a ui-sref="home">Retour à l'accueil</a>
 </div>

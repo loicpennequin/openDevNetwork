@@ -14,7 +14,7 @@ module.exports.login = async (req, res) => {
     // Valiate identifier
     let query = await userModel.getByUserNameOrEmail(identifier);
     if (query.length <= 0 ) {
-        return res.json({success: false, msg: 'User not found.'});
+        return res.status(404).json({msg: 'User not found.'});
     }
 
     let user = query[0];
@@ -23,23 +23,38 @@ module.exports.login = async (req, res) => {
     bcrypt.compare(pw, user.password, function(err, result) {
         if(result !== true) return res.json({success: false, msg: 'Incorrect password.'});
 
-        let token = jwt.sign({data: user}, process.env.TOKEN_SECRET, {
-          expiresIn: 86400 // 1 day
+        let token = jwt.sign({data: user, timestamp : new Date()}, process.env.TOKEN_SECRET, {
+          expiresIn: 3600 // 1 hour
         });
-
-        delete user.password;
         res.json({
           success: true,
-          token: 'JWT '+token,
-          user: user
+          token: 'JWT '+ token,
+          user: {
+              id : user.id,
+              username: user.username
+          }
         });
     });
 }
 
 module.exports.isLoggedIn = async(req,res,next) =>{
     passport.authenticate('jwt', {session:false}, (err, user, info) => {
-        user ? res.send(true) : res.send(false); //req.isAuthenticated() always returns false...
+        user ? refreshToken(res, user) : res.status(401).send(false);
     })(req,res,next)
+
+    let refreshToken = (res, user) =>{
+        user.token = jwt.sign({data: user, timestamp : new Date()}, process.env.TOKEN_SECRET, {
+          expiresIn: 3600 // 1 hour
+        });
+        res.json({
+          success: true,
+          token: 'JWT '+ user.token,
+          user: {
+              id : user.id,
+              username: user.username
+          }
+        });
+    }
 };
 
 module.exports.sendPwRecoverMail = async(req, res, next) =>{

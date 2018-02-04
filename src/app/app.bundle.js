@@ -22,7 +22,12 @@ require('./app.routes.js');
 require('./app.config.js');
 
 //modules
+require('./modules/layout/layout.js');
+require('./modules/layout/layout.templates.js');
+require('./modules/layout/components/odnMainNavbar/odnMainNavbar.component.js')
 require('./modules/core/core.js');
+require('./modules/core/services/httpRequestInterceptor.js')
+require('./modules/core/services/localStorage.js')
 require('./modules/core/services/authService.js')
 require('./modules/core/core.templates.js');
 require('./modules/pages/pages.js');

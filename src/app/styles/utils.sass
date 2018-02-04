@@ -22,7 +22,7 @@ $dark-green : hsl(100, 70%, 20%)
 
 $primary : $medium-blue
 $success : $light-green
-$danger : $medium-red
+$danger : $light-red
 
 //typography
 
@@ -37,3 +37,6 @@ $font-secondary: 'Righteous', 'Helvetica', 'Arial', sans-serif
 =desktop-only
     @media screen and (min-width: 1024px)
         @content
+
+=box-shadow($color)
+    box-shadow: 0 0 15px 0px transparentize($color,0.7),  0 5px 10px 2px transparentize($color,0.5)

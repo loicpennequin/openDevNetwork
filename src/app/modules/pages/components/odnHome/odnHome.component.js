@@ -4,7 +4,7 @@ angular.module('pages')
     templateUrl : 'odnHome.component.html',
     controller : odnHomeController,
 })
-function odnHomeController($async, AuthService){
+function odnHomeController($async, AuthService, $state){
     let $ctrl = this;
 
     $ctrl.$onInit = function(){

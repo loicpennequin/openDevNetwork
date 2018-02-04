@@ -8,7 +8,7 @@ angular.module('${moduleName}', []);`;
 module.exports.componentHTML = (componentName) => {
     let content = `<div class="${componentName}-component">
     <p>{{$ctrl.name}} works!</p>
-    </div>`;
+</div>`;
 
     return content;
 };

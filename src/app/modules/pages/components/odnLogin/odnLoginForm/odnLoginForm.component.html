@@ -1,3 +1,18 @@
 <div class="odnLoginForm-component">
-    <p>{{$ctrl.name}} works!</p>
-    </div>
+    <form ng-submit="$ctrl.onSubmit({credentials: $ctrl.credentials})">
+        <div class="form-field">
+            <label>Pseudo ou adresse mail</label>
+            <input type="text" ng-model="$ctrl.credentials.identifier">
+        </div>
+        <div class="form-field">
+            <label>Mot de passe</label>
+            <input type="password" ng-model="$ctrl.credentials.password">
+        </div>
+        <div class="form-field inline">
+            <input type="submit" class="primary" value="Se connecter">
+            <label class="checkbox-label" for="rememberme">Se souvenir de moi</label>
+            <input type="checkbox" name="rememberme" ng-model="$ctrl.credentials.remember">
+        </div>
+    </form>
+    <button class="button-clear">J'ai oublié mon mot de passe</button>
+</div>

@@ -36,25 +36,25 @@ angular.module('pages')
         link: (scope, element, attrs, ngModel) => {
             let apiUrl = attrs.isAvailable;
 
-            function setAsAvailable(bool) {
-                ngModel.$setValidity('available', bool);
-            }
+            let _setAsAvailable = (bool) =>{ngModel.$setValidity('available', bool)};
 
-            let checkAvailable = (value) => {
+            let _checkAvailable = (value) => {
                 if (!value || value.length == 0) return;
 
                 $http.post(apiUrl, {value: value})
-                .then((response) =>{
-                    setAsAvailable(response.data.available);
-                })
-                .catch((err) => {
-                    setAsAvailable(false);
-                });
-                return value;
-            }
-            let debounceCheckAvailable = _.debounce(checkAvailable, 1000)
+                    .then((response) =>{
+                        _setAsAvailable(response.data.available);
+                    })
+                    .catch((err) => {
+                        _setAsAvailable(false);
+                    });
 
-            ngModel.$parsers.push(debounceCheckAvailable)
+                return value;
+            };
+
+            let _debounceCheckAvailable = _.debounce(_checkAvailable, 1000);
+
+            ngModel.$parsers.push(_debounceCheckAvailable);
         }
     }
 });

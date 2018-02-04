@@ -4,6 +4,8 @@
         margin: 10px 0
     label
         font-weight: 700
+        &.checkbox-label, .radio-label
+            font-weight: 400
         i
             color: $success
     input, select
@@ -13,6 +15,7 @@
         &.large
             width: 100%
         &[type="submit"]
+            padding: 6px
             background: $white
             border-radius: 10px
             color: $primary
@@ -23,6 +26,13 @@
                 color: $medium-grey
                 cursor: not-allowed
                 opacity: 0.5
+            &.primary
+                background: $primary
+                color: $white
     ng-message
         i
             color: $danger
+
+    &.inline
+        input, label
+            display: inline-block
