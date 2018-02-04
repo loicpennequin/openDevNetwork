@@ -23,6 +23,13 @@ const getByUserName = async (username) => {
     return user;
 };
 
+const getByUserNameOrEmail = async (identifier) => {
+    let db = new sql();
+    let user = await db.query(`SELECT * FROM users WHERE username = '${identifier}' OR email = '${identifier}'`);
+    await db.close();
+    return user;
+};
+
 module.exports.getAll = async () => {
     let db = new sql();
     let users = await db.query(`SELECT * FROM users`);
@@ -40,6 +47,8 @@ module.exports.getById = async (id) => {
 module.exports.getByUserName = getByUserName;
 
 module.exports.getByEmail = getByEmail;
+
+module.exports.getByUserNameOrEmail = getByUserNameOrEmail;
 
 module.exports.create = async (req) => {
     const errors = validationResult(req);

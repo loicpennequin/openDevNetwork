@@ -23,6 +23,7 @@ require('./modules/core/services/authService.js')
 require('./modules/core/core.templates.js');
 require('./modules/pages/pages.js');
 require('./modules/pages/pages.templates.js');
+require('./modules/pages/components/odnLogin/odnLoginForm/odnLoginForm.component.js')
 require('./modules/pages/components/odnLogin/odnLogin.component.js')
 require('./modules/pages/components/odnDashboard/odnDashboard.component.js')
 require('./modules/pages/components/odnHome/odnRegisterForm/odnRegisterForm.component.js')

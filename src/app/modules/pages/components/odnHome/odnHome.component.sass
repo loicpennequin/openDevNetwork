@@ -9,7 +9,6 @@
         overflow: hidden
 
     section
-        font-size: 1.2em
         position: relative
         padding: 20px
         width: 50%
@@ -25,6 +24,7 @@
             background-blend-mode: color
             transition: all 1s
             border: solid 3px $white
+            box-shadow: 0 -0 20px 0 $dark-grey
             &:after
                 content: ""
                 position: absolute
@@ -32,7 +32,7 @@
                 left: 0
                 width: 100%
                 height: 100%
-                background: linear-gradient($cyan, $medium-blue)
+                background: linear-gradient(transparentize($cyan,0.8), transparentize($medium-blue,0.2))
                 transition: all 1s
                 opacity: 1
                 z-index: -1
@@ -52,27 +52,25 @@
         &.left-side
             position: relative
             padding: 0
-            font-size: 1.5em
             &:after
                 content: ""
                 top: 0
                 left: 0
                 position: absolute
-                width: 200%
-                height: 100%
+                width: 100vw
+                height: 100vh
                 transition: all 0.3s
                 background: url('../assets/landing-bg.jpg')
                 z-index: -1
 
             h1
                 color: $primary
-                font-size: 3em
+                font-size: 4.5em
                 font-family: $font-secondary
                 @supports (-webkit-background-clip: text)
                     background: linear-gradient(135DEG, $cyan, $dark-blue 60%)
                     color: transparent
                     -webkit-background-clip: text
-                    -webkit-text-stroke: 1px $black
             &.blur:after
                 +desktop-only
                     filter: blur(10px)

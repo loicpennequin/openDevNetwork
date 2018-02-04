@@ -7,11 +7,11 @@ const passport    = require('passport'),
       userModel   = require(path.join(__dirname, '../models/userModel.js'))
 
 module.exports.login = async (req, res) => {
-    const username = req.body.username,
+    const identifier = req.body.identifier,
           pw    = req.body.password;
 
-    // Valiate username
-    let query = await userModel.getByUserName(username);
+    // Valiate identifier
+    let query = await userModel.getByUserNameOrEmail(identifier);
     if (query.length <= 0 ) {
         return res.json({success: false, msg: 'User not found.'});
     }
